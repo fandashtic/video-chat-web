@@ -59,6 +59,7 @@ export default {
       dom.setAttribute("id", "video-item-" + id);
       dom.setAttribute("class", "video-item");
       box.setAttribute("class", "video-item-box");
+      box.append(stream.userId);
       dom.appendChild(box);
       this.canvas.appendChild(dom);
       stream.play("video-item-" + id);
@@ -126,7 +127,7 @@ export default {
       let stream = streamList[index];
       if (stream.getId() === mainId) {
         // Main window
-        this.updateVideoItem(stream, `grid-area: span 12/span 24/13/25`);
+        this.updateVideoItem(stream, `grid-area: span 12/span 24/13/21`);
       } else {
         // Sub window
         this.updateVideoItem(
@@ -196,13 +197,13 @@ export default {
         if (no === 1) {
           this.updateVideoItem(
             stream,
-            `grid-area: span 12/span 24/13/25;`,
+            `grid-area: span 12/span 24/13/21;`,
             true
           );
         } else if (no < 5) {
           this.updateVideoItem(
             stream,
-            `grid-area: span 12/span 20/13/25;`,
+            `grid-area: span 12/span 20/13/21;`,
             true
           );
         } else {

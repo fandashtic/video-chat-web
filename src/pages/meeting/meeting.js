@@ -4,7 +4,7 @@ import $ from "jquery";
 import * as Cookies from "js-cookie";
 import { merge } from "lodash";
 import "@/assets/css/icons.css";
-
+import { logOut } from "../../utils/Logger";
 import "@/assets/global.scss";
 import "./meeting.scss";
 import ButtonControl from "@/utils/ButtonControl";
@@ -16,12 +16,8 @@ import {
 } from "@/utils/BrowserCheck";
 import Notify from "@/utils/Notify";
 import Renderer from "@/utils/Render";
-import { SHARE_ID, RESOLUTION_ARR, APP_ID, Token } from "@/utils/Settings";
+import { SHARE_ID, RESOLUTION_ARR } from "@/utils/Settings";
 import { logger, log } from "../../utils/Logger";
-import axios from 'axios';
-
-// eslint-disable-next-line
-import Polyfill from "@/utils/Polyfill";
 
 // If display a window to show video info
 const DUAL_STREAM_DEBUG = false;
@@ -56,8 +52,8 @@ const optionsInit = () => {
   let tempProfile = RESOLUTION_ARR[Cookies.get("videoProfile")];
   options.resolution = tempProfile[0] / tempProfile[1] || 4 / 3;
 
-  options.key = Cookies.get('APP_ID');
-  options.token = Cookies.get('Token');
+  options.key = Cookies.get("APP_ID");
+  options.token = Cookies.get("Token");
 
   return options;
 };
@@ -149,6 +145,7 @@ const streamInit = (uid, options, config) => {
   // eslint-disable-next-line
   let stream = AgoraRTC.createStream(merge(defaultConfig, config));
   stream.setVideoProfile(options.videoProfile);
+  stream.userId = Cookies.get("user_name");
   return stream;
 };
 
@@ -314,6 +311,7 @@ const subscribeStreamEvents = () => {
   client.on("stream-added", function(evt) {
     let stream = evt.stream;
     let id = stream.getId();
+    stream.userId = Cookies.get("user_name");
     localLog("New stream added: " + id);
     localLog(new Date().toLocaleTimeString());
     localLog("Subscribe ", stream);
@@ -429,7 +427,9 @@ const subscribeMouseEvents = () => {
         );
     } finally {
       // Redirect to index
-      window.location.href = "index.html";
+      logOut();
+      // eslint-disable-next-line no-undef
+      // window.location.href = 'index.html';
     }
   });
 

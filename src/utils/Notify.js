@@ -3,15 +3,15 @@
 /**
  * add notification container to body
  */
-import $ from 'jquery';
+import $ from "jquery";
 const notificationInit = () => {
   let container = `<div class="notification-container" 
                     style="z-index: 12;position: absolute;
                     width: 38.2%;max-width: 450px; 
                     min-width: 300px;left: 0;
                     word-break:break-all;
-                    bottom: 0;"></div>`;
-  $('body').append(container);
+                    top: 5%;left:35%"></div>`;
+  $("body").append(container);
 };
 
 /**
@@ -19,10 +19,10 @@ const notificationInit = () => {
  */
 const Notify = (() => {
   // Singleton for notification container
-  let container = $('.notification-container');
+  let container = $(".notification-container");
   if (!container.length) {
     notificationInit();
-    container = $('.notification-container');
+    container = $(".notification-container");
   }
 
   let notifyFactory = (type, msg, secs) => {
@@ -32,32 +32,32 @@ const Notify = (() => {
                                 ${msg}
                             </div>`;
     container.append(notification);
-    $('#notify-' + id + ' .delete').on('click', function() {
-      $('#notify-' + id).remove();
+    $("#notify-" + id + " .delete").on("click", function() {
+      $("#notify-" + id).remove();
     });
     setTimeout(function() {
-      $('#notify-' + id).remove();
+      $("#notify-" + id).remove();
     }, secs);
   };
 
   return {
     primary(msg, secs) {
-      notifyFactory('primary', msg, secs);
+      notifyFactory("primary", msg, secs);
     },
     link(msg, secs) {
-      notifyFactory('link', msg, secs);
+      notifyFactory("link", msg, secs);
     },
     info(msg, secs) {
-      notifyFactory('info', msg, secs);
+      notifyFactory("info", msg, secs);
     },
     success(msg, secs) {
-      notifyFactory('success', msg, secs);
+      notifyFactory("success", msg, secs);
     },
     warning(msg, secs) {
-      notifyFactory('warning', msg, secs);
+      notifyFactory("warning", msg, secs);
     },
     danger(msg, secs) {
-      notifyFactory('danger', msg, secs);
+      notifyFactory("danger", msg, secs);
     }
   };
 })();

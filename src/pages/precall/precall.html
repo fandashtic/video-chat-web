@@ -19,7 +19,7 @@
     </div>
     <div class="ag-main">
       <div class="columns ag-container">
-        <div class="column">
+        <div class="column" style="display: none;">
           <div class="ag-info">
             <p>Room Name:
               <span id="channel"></span>
@@ -35,15 +35,10 @@
             </p>
             <p>Transcode:
               <span id="transcode"></span>
-            </p>
-            <div class="ag-info-footer">
-              <a id="quickJoinBtn" class="ag-rounded button">
-                <span>Quick Join</span>
-              </a>
-            </div>
+            </p>            
           </div>
-
         </div>
+
         <div class="column">
           <div class="ag-cards">
             <!-- <section class="ag-cards-title">
@@ -52,6 +47,12 @@
                 <div id="stepTwo" class="step">2</div>
               </div>
             </section> -->
+            
+            <div class="ag-info-footer">
+              <a id="quickJoinBtn" class="ag-rounded button">
+                <span>Continue</span>
+              </a>
+            </div>
 
             <section class="ag-card" id="videoCard">
               <div class="ag-card-header">
@@ -124,11 +125,13 @@
                 <div class="ag-browser-test">
                   <img src="../../assets/images/ag-browser.png" alt="">
                   <p>Browser Compatibility:
-                    <span id="compatibility"></span>
+                    <p id="compatibility"></p>
                   </p>
                 </div>
               </div>
             </section>
+
+            
           </div>
 
         </div>
