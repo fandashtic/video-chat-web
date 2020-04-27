@@ -182,7 +182,7 @@ const shareStart = () => {
       screen: true,
       video: false,
       audio: false,
-      extensionId: "minllpmhdgpndnkomcoccfekfegnlikg",
+      // ExtensionId: "minllpmhdgpndnkomcoccfekfegnlikg",
       mediaSource: "application"
     };
     shareStream = streamInit(uid, shareOptions, config);
